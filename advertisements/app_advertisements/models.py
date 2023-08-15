@@ -37,6 +37,12 @@ class Advertisement(models.Model):
             )
         return self.updated_at.strftime("%d.%m.%Y в %H:%M:%S")
 
+    @admin.display(description='мини изображение')
+    def show_mini_image(self):
+        if self.image:
+            return format_html('<img src="{}" width=50 height=50>', self.image.url)
+
+
     class Meta:
         db_table = 'advertisements'
 
